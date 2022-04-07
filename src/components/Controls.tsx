@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { CustomSelect } from './CustomSelect';
@@ -9,13 +9,9 @@ interface IOptionsItemSelect {
   label: string;
 }
 
-const options: Array<IOptionsItemSelect> = [
-  { value: 'Africa', label: 'Africa' },
-  { value: 'America', label: 'America' },
-  { value: 'Asia', label: 'Asia' },
-  { value: 'Europa', label: 'Europa' },
-  { value: 'Oceania', label: 'Oceania' },
-];
+interface ISearch {
+  onSearch: (search: string, region: string) => void;
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,13 +25,26 @@ const Wrapper = styled.div`
   }
 `;
 
-const Controls: FC = () => {
+const options: Array<IOptionsItemSelect> = [
+  { value: 'Africa', label: 'Africa' },
+  { value: 'America', label: 'America' },
+  { value: 'Asia', label: 'Asia' },
+  { value: 'Europa', label: 'Europa' },
+  { value: 'Oceania', label: 'Oceania' },
+];
+
+const Controls: FC<ISearch> = ({ onSearch }) => {
   const [search, setSearch] = useState<string>('');
-  const [region, setRegion] = useState('');
+  const [region, setRegion] = useState<any>('');
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+
+  useEffect(() => {
+    const regionValue = region?.value || '';
+    onSearch(search, regionValue);
+  }, [search, region]);
 
   return (
     <Wrapper>
@@ -46,6 +55,7 @@ const Controls: FC = () => {
         isClearable
         isSearchable={false}
         value={region}
+        onChange={setRegion}
       />
     </Wrapper>
   );
