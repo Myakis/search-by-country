@@ -6,19 +6,7 @@ import Main from './components/Main';
 import Details from './pages/Details';
 import { HomePage } from './pages/HomePage';
 import NotFound from './pages/NotFound';
-
-interface IFlags {
-  svg: string;
-  png: string;
-}
-
-export interface ICountries {
-  name: string;
-  capital: string;
-  population: number;
-  flags: IFlags;
-  region: string;
-}
+import { ICountries } from './types';
 
 function App() {
   const [countries, setCountries] = useState<ICountries[]>([]);

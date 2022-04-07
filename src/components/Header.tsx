@@ -1,18 +1,21 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoMoon, IoMoonOutline } from 'react-icons/io5';
+
 import { Container } from './Container';
-import { Link } from 'react-router-dom';
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
   background-color: (--color-ui-base);
 `;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
+
 const Title = styled(Link).attrs({
   to: '/',
 })`

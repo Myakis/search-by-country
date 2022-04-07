@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { ICard } from '../types';
+
 const Wrapper = styled.article`
   border-radius: var(--border-radius);
   background-color: var(--color-ui-base);
@@ -39,17 +41,6 @@ const CardListItem = styled.li`
     font-weight: var(--fw-bold);
   }
 `;
-
-interface ICardInfo {
-  title: string;
-  description: string | number;
-}
-
-interface ICard {
-  img: string;
-  name: string;
-  info?: ICardInfo[];
-}
 
 const Card: FC<ICard> = ({ img, name, info = [] }) => {
   return (

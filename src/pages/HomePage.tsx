@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
-import { ICountries } from '../App';
 
 import Card from '../components/Card';
 import Controls from '../components/Controls';
 import List from '../components/List';
 import { ALL_COUNTRIES } from '../config';
+import { ICountries } from '../types';
 
 interface HomeProps {
   countries: ICountries[];
@@ -43,27 +43,31 @@ export const HomePage: FC<HomeProps> = ({ countries, setCountries }) => {
     <>
       <Controls onSearch={handleSearch} />
       <List>
-        {filterCountries.map(country => {
-          const countryInfo = {
-            img: country.flags.svg,
-            name: country.name,
-            info: [
-              {
-                title: 'Population',
-                description: country.population,
-              },
-              {
-                title: 'Region',
-                description: country.region,
-              },
-              {
-                title: 'Capital',
-                description: country.capital,
-              },
-            ],
-          };
-          return <Card key={country.name} {...countryInfo} />;
-        })}
+        {filterCountries.length ? (
+          filterCountries.map(country => {
+            const countryInfo = {
+              img: country.flags.svg,
+              name: country.name,
+              info: [
+                {
+                  title: 'Population',
+                  description: country.population,
+                },
+                {
+                  title: 'Region',
+                  description: country.region,
+                },
+                {
+                  title: 'Capital',
+                  description: country.capital,
+                },
+              ],
+            };
+            return <Card key={country.name} {...countryInfo} />;
+          })
+        ) : (
+          <h1 style={{ textAlign: 'center' }}>Loading....</h1>
+        )}
       </List>
     </>
   );
