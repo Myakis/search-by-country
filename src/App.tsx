@@ -1,25 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import Controls from './components/Controls';
+import Header from './components/Header';
+import Main from './components/Main';
+import { ALL_COUNTRIES } from './config';
+import List from './components/List';
+import Card from './components/Card';
+
+interface IFlags {
+  svg: string;
+  png: string;
+}
+
+interface ICountries {
+  name: string;
+  capital: string;
+  population: number;
+  flags: IFlags;
+  region: string;
+}
 
 function App() {
+  const [countries, setCountries] = useState<ICountries[]>([]);
+
+  useEffect(() => {
+    axios.get(ALL_COUNTRIES).then(({ data }) => {
+      setCountries(data);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header></Header>
+      <Main>
+        <Controls />
+        <List>
+          {countries.map(country => {
+            const countryInfo = {
+              img: country.flags.svg,
+              name: country.name,
+              info: [
+                {
+                  title: 'Population',
+                  description: country.population,
+                },
+                {
+                  title: 'Region',
+                  description: country.region,
+                },
+                {
+                  title: 'Capital',
+                  description: country.capital,
+                },
+              ],
+            };
+            return <Card key={country.name} {...countryInfo} />;
+          })}
+        </List>
+      </Main>
+    </>
   );
 }
 
