@@ -1,4 +1,17 @@
-# Getting Started with Create React App
+# Список стран
+
+## Осуществелен, сортированный по названию и по региону, список стран, присуствует функционал смены темы
+
+### Используемый Stack
+
+- React
+- TypeScript
+- style-components
+- axios
+- react-select
+- react-icons
+
+![Превьюшка](https://github.com/Myakis/search-by-country/raw/master/preview.jpg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
