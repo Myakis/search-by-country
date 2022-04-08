@@ -1,36 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { IoMoon, IoMoonOutline } from 'react-icons/io5';
 
-import { Container } from './Container';
-
-const HeaderEl = styled.header`
-  box-shadow: var(--shadow);
-  background-color: (--color-ui-base);
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Title = styled(Link).attrs({
-  to: '/',
-})`
-  color: var(--color-text);
-  font-size: var(--fz-sm);
-  text-decoration: none;
-  font-weight: var(--fw-bold);
-`;
-
-const ModeSwitcher = styled.div`
-  cursor: pointer;
-  font-size: var(--fz-sm);
-  font-weight: var(--fw-bold);
-  text-transform: capitalize;
-`;
+import { Container } from './UI/Container';
+import { HeaderEl, ModeSwitcher, Title, Wrapper } from './UI/Header';
 
 const Header: FC = () => {
   const [theme, setTheme] = useState<string>('light');

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { searchByCountry } from '../config';
-import { Button } from '../components/Button';
+import { Button } from '../components/UI/Button';
 import Info from '../components/Info';
 
 const Details = () => {
