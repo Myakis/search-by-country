@@ -2,7 +2,9 @@ import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { filterByCode } from '../config';
+import { InfoProps } from '../types';
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -89,30 +91,6 @@ const Tag = styled.span`
   line-height: 1.5;
   cursor: pointer;
 `;
-
-interface ICurrencies {
-  code: string;
-  name: string;
-  symbol: string;
-}
-interface ILanguages {
-  name: string;
-  nativeName: string;
-}
-
-interface InfoProps {
-  name: string;
-  nativeName: string;
-  flag: string;
-  capital: string;
-  population: number;
-  region: string;
-  subregion: string;
-  topLevelDomain: string[];
-  currencies: ICurrencies[];
-  languages: ILanguages[];
-  borders?: string[];
-}
 
 const Info: FC<InfoProps> = ({
   name,

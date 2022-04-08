@@ -1,17 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { IOptionsItemSelect } from '../types';
 import { CustomSelect } from './CustomSelect';
 import Search from './Search';
-
-interface IOptionsItemSelect {
-  value: string;
-  label: string;
-}
-
-interface ISearch {
-  onSearch: (search: string, region: string) => void;
-}
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,11 +17,15 @@ const Wrapper = styled.div`
   }
 `;
 
+interface ISearch {
+  onSearch: (search: string, region: string) => void;
+}
+
 const options: Array<IOptionsItemSelect> = [
   { value: 'Africa', label: 'Africa' },
   { value: 'America', label: 'America' },
   { value: 'Asia', label: 'Asia' },
-  { value: 'Europa', label: 'Europa' },
+  { value: 'Europe', label: 'Europe' },
   { value: 'Oceania', label: 'Oceania' },
 ];
 
@@ -39,6 +35,10 @@ const Controls: FC<ISearch> = ({ onSearch }) => {
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+  };
+
+  const onSelectHandler = (newValue: any) => {
+    setRegion(newValue);
   };
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Controls: FC<ISearch> = ({ onSearch }) => {
         isClearable
         isSearchable={false}
         value={region}
-        onChange={setRegion}
+        onChange={onSelectHandler}
       />
     </Wrapper>
   );

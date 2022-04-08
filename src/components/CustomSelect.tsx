@@ -5,12 +5,11 @@ import Select from 'react-select';
 export const CustomSelect = styled(Select).attrs({
   control: (provided: []) => ({
     ...provided,
-    backgroundColor: `var(--color-ui-base)`,
     borderRadius: `var(--border-radius)`,
     padding: `0.25rem`,
     border: `none`,
     boxShadow: `var(--shadow)`,
-    height: `50px`,
+    height: `500px`,
   }),
   option: (provided: [], state: any) => ({
     ...provided,
@@ -23,12 +22,14 @@ export const CustomSelect = styled(Select).attrs({
   border-radius: var(--border-radius);
   font-family: var(--family);
   border: none;
-
+  & .Select-placeholder {
+    font-size: 60px !important;
+  }
   & > * {
     box-shadow: var(--shadow) !important;
+    background-color: var(--color-ui-base) !important;
   }
   & * {
     color: var(--color-text) !important;
-    background-color: var(--color-ui-base) !important;
   }
 `;

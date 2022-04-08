@@ -43,31 +43,27 @@ export const HomePage: FC<HomeProps> = ({ countries, setCountries }) => {
     <>
       <Controls onSearch={handleSearch} />
       <List>
-        {filterCountries.length ? (
-          filterCountries.map(country => {
-            const countryInfo = {
-              img: country.flags.svg,
-              name: country.name,
-              info: [
-                {
-                  title: 'Population',
-                  description: country.population,
-                },
-                {
-                  title: 'Region',
-                  description: country.region,
-                },
-                {
-                  title: 'Capital',
-                  description: country.capital,
-                },
-              ],
-            };
-            return <Card key={country.name} {...countryInfo} />;
-          })
-        ) : (
-          <h1 style={{ textAlign: 'center' }}>Loading....</h1>
-        )}
+        {filterCountries.map(country => {
+          const countryInfo = {
+            img: country.flags.svg,
+            name: country.name,
+            info: [
+              {
+                title: 'Population',
+                description: country.population,
+              },
+              {
+                title: 'Region',
+                description: country.region,
+              },
+              {
+                title: 'Capital',
+                description: country.capital,
+              },
+            ],
+          };
+          return <Card key={country.name} {...countryInfo} />;
+        })}
       </List>
     </>
   );
